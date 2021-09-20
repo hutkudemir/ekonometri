@@ -1,0 +1,76 @@
+---
+title: Giriş
+output:
+  html_document:
+    theme: spacelab
+---
+
+```{r, strip.white = TRUE, echo=FALSE, message=FALSE}
+suppressPackageStartupMessages(library(swirl))
+
+# Code placed in this file fill be executed every time the
+      # lesson is started. Any variables created here will show up in
+      # the user's working directory and thus be accessible to them
+      # throughout the lesson.
+.get_course_path <- function(){
+  tryCatch(swirl:::swirl_courses_dir(),
+           error = function(c) {file.path(find.package("swirl"),"Courses")}
+  )
+}
+
+``` 
+
+Merhaba ilk derse hoşgeldiniz. Ekranda "..." gördüğünüzde devam edebilmek için enter tuşuna basmalısınız. > işaretini görmeden konsola birşey yazmanız gerekmez. Sadece dikkatlice okuyun ve enter tuşuna basın. Bazı bölümlerde datayı mouse ile açmanızı söyleyebilirim. Okuduğunuz talimatları dikkatlice yerine getirmeye çalışın. 
+
+Derse başlamadan önce Rstudionuzun dilini Türkçeye çevirmenizi istiyorum. Rstudio'nun dilini Türkçeye çevirmek kodların evrensel dilini değiştirmesede verilen uyarıları Türkçe görebilmenizi sağlayacaktır. 
+
+lütfen console'a select_language(language = "turkish", append_rprofile = TRUE) yazın
+
+```{r, strip.white = TRUE}
+select_language(language = "turkish", append_rprofile = TRUE)
+``` 
+
+Bu komutu ezberlemenize gerek yok. Aslında hiçbir komutu ezberlemenize gerek yok. Şu anda sadece dili değiştirecek bir komut girdiniz. Basit bir matıkla ne yapmak istediğinizi yazdınız. Select language ingilizce dil seçin demek. Rda genellikle önce ne yapmak istediğinizi yazarsınız. İkinci olarakda hangi dili seçtiğimizi yazdık. Uygulama dersimize başlamanız için Wooldridge ders kitabınızın veri setine ulaşmanız gerekiyor. 
+
+Bunun için Concole'a install.packages("wooldridge") yazabilirsiniz. Ancak şu anda console da ... işareti olduğu için bu işlemi yazarak yapamazsınız. Bir diğer yöntem RStudio sağ alt kutuda bulunan Packages sekmesine gidip, install üzerinden wooldridge aratıp yükleyebilirsiniz. Lütfen ekranınızın sağ alt köşesinde bulunan kutucuğun üzerindeki sekmelerden yani Files, Plots, Packages ... sekmelerinden Packages sekmesine gidin, Install üzerine basın ve boşluğa wooldridge yazın. İlk birkaç harften sonra Wooldridge Packages ortaya çıkacaktır.Install tuşuna basıp yükleyin. 
+
+Daha sonra Concole'a library(wooldridge) yazdığınızda artık Wooldridge datalarına ulaşabiliriz. 
+
+lütfen console'a library(wooldridge) yazın
+
+```{r, strip.white = TRUE}
+library(wooldridge)
+``` 
+
+İlk uygulayacağımız soru ders kitabınızın ilk ünitesinden bilgisayar egzersizlerinin ilk sorusu. Bu yüzden Wage1 datasını yüklemeniz gerekiyor. 
+
+lütfen console'a data("wage1") yazın
+
+```{r, strip.white = TRUE}
+data("wage1")
+``` 
+
+data("wage1") komutu wage1 isimli veri setini data olarak istediğinizi belirtir. Komut olarak önce ne istediğimizi sonra parantez içinde neyden istediğinizi yazacağınızı daha önce söylemiştik. data komutu wooldridge paketinde istediğimiz veri setini getirmemizi sağlayacak. 
+
+RStudio'nuzun sağ üst köşesinde bulunan kutuda Enviroment sekmenizin altında wage1 veri setinizi görebilirsiniz. Daha sonra kulanacağımız veri setlerini ve sizin başka dersleriniz için kullanmak isteyebileceğiniz veri setlerini bu sekmeden yükleyebilirsiniz. 
+
+Import Dataset sekmesine tıkladığınızda bir çok kaynaktan verileri R'a yükleyebileceğinizi göreceksiniz. Lütfen şimdi İmport Datasetin üstüne gidin ve hangi kaynakları kullanabileceğinize bakın. 
+
+wage1 ilk başta promise olarak görünebilir. Bu verimizi bir paketten yüklediğimizi göstermektedir. wage1 veri setinin üzerine tıkladığınızda kullanabileceğimiz veri setine dönüşür. Artık promise değil 526 obs of 24 variables olduğunu göreceksiniz. 
+
+Bu veri setinde her biri 526 gözleme sahip 24 değişkene sahip olduğunu gösterir. 
+
+Data'nın 526 obs. ... kısmına tıkladığınızda ekranda veri setini gözleyebileceksiniz. wage, educ, exper, tenure ... gibi değişkenleri görebilirsiniz. Eskiye dönmek için önünüzde açılan wage1 sekmesini kapatabilirsiniz. 
+
+veriyi gözlemenin bir diğer yolu head komutunu kullanmaktır. Böylece ilk 6 gözlemi görebileceksiniz. 
+
+lütfen console'a head(wage1) yazın
+
+```{r, strip.white = TRUE}
+head(wage1)
+``` 
+
+head komutu wage1 veri setinin ilk 6 gözlemini göstermek için kullanılır. 
+
+Şimdi tekrar Enviroment kutusunda wage1 veri setinde 526 obs yazan kısım üzerine tıklayın. Gözlemleri anlamlarına göre inceleyin. İlk bir kaç değişkenin Türkçe anlamlarını yazıyorum. Diğerlerini google üzerinden wooldridge wage1 yazarak aratabilirsiniz. wage (ortalama saatlik kazanç), educ (eğitim yılı), exper (kaç yıllık deneyimli), tenure  (şimdiki işyerinde kaç yıl çalıştığı),nonwhite  (1 eğer kişi beyaz değilse, 0 eğer beyazsa), female (1 eğer kadınsa, 0 eğer erkese), married  (1 eğer evliyse, 0 eğer bekarsa), ....... 
+
